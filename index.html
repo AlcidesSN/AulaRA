@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Realidade Aumentada na Web — UniFil</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- VIEWER -->
+<div id="viewer" role="dialog" aria-modal="true">
+  <div class="v-topbar">
+    <div class="v-topbar-left">
+      <div class="v-dot"></div>
+      <span class="v-lesson-name" id="v-lesson-name">Aula</span>
+    </div>
+    <div style="display:flex;align-items:center;gap:16px;">
+      <span class="v-counter" id="v-counter">1 / 5</span>
+      <button class="v-close" onclick="closeViewer()">✕ Fechar (Esc)</button>
+    </div>
+  </div>
+
+  <div class="v-progress-track">
+    <div class="v-progress-fill" id="v-progress"></div>
+  </div>
+
+  <div class="v-body" id="v-body"></div>
+
+  <div class="v-nav">
+    <button class="nav-btn prev" id="btn-prev" onclick="navigate(-1)">← Anterior</button>
+    <div class="dots" id="dots"></div>
+    <button class="nav-btn next" id="btn-next" onclick="navigate(1)">Próximo →</button>
+  </div>
+</div>
+
+<!-- PAGE -->
+<header>
+  <div class="header-grid"></div>
+  <div class="header-glow"></div>
+  <div class="container header-inner">
+    <div class="badge"><div class="dot"></div>UniFil · Ciências da Computação · 2024</div>
+    <h1>Realidade Aumentada<br><span>na Web</span></h1>
+    <p class="lead">
+      Aprenda os fundamentos de RA, RV e RM, e desenvolva seu primeiro aplicativo de
+      Realidade Aumentada usando <strong style="color:rgba(255,255,255,.8)">A-Frame</strong> e
+      <strong style="color:rgba(255,255,255,.8)">AR.js</strong> — rodando direto no navegador.
+    </p>
+    <div class="tag-row">
+      <div class="tag">📚 2 Aulas</div>
+      <div class="tag">🗂️ 12 Slides</div>
+      <div class="tag">💻 Prático com código</div>
+      <div class="tag">🎯 Nível: Iniciante</div>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="container">
+
+    <section>
+      <div class="section-title"><div class="bar"></div><h2>Sobre o Professor</h2></div>
+      <div class="professor-card">
+        <div class="avatar">AS</div>
+        <div style="flex:1;">
+          <div class="prof-name">Alcides Sandoli Neto</div>
+          <div class="prof-role">Professor — Realidade Aumentada e Tecnologias Web</div>
+          <p class="prof-bio">
+            Estudante do 4º ano do curso de <strong style="color:rgba(255,255,255,.8)">Ciências da Computação</strong>
+            na UniFil — Centro Universitário Filadélfia. Apaixonado por tecnologias imersivas, desenvolvimento web e
+            criação de experiências interativas que unem o mundo físico e digital.
+          </p>
+          <div class="chip-row">
+            <div class="chip">🎓 Ciências da Computação</div>
+            <div class="chip">📅 4º Ano</div>
+            <div class="chip">🏫 UniFil</div>
+            <div class="chip">🔬 AR / VR / Web</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-title"><div class="bar"></div><h2>O que você vai aprender</h2></div>
+      <div class="learn-grid">
+        <div class="learn-card">
+          <div class="icon">🌐</div>
+          <h4>Fundamentos</h4>
+          <p>Entenda as diferenças entre Realidade Aumentada, Virtual e Misturada com exemplos reais do dia a dia.</p>
+        </div>
+        <div class="learn-card">
+          <div class="icon">🛠️</div>
+          <h4>Ferramentas</h4>
+          <p>Conheça o A-Frame e o AR.js — as principais tecnologias abertas para criar AR na web.</p>
+        </div>
+        <div class="learn-card">
+          <div class="icon">🚀</div>
+          <h4>Mão na massa</h4>
+          <p>Construa um app AR completo que detecta marcadores e exibe modelos 3D animados, sem instalar nada.</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-title"><div class="bar"></div><h2>Aulas</h2><span class="pill">Clique para abrir</span></div>
+      <div class="aula-grid">
+
+        <div class="aula-card" onclick="openLesson(1)" role="button" tabindex="0" onkeydown="if(event.key==='Enter')openLesson(1)">
+          <div class="aula-card-top">
+            <div class="aula-num">01</div>
+            <div class="open-btn">Abrir aula →</div>
+          </div>
+          <h3>Conceitos de Realidade Aumentada</h3>
+          <p class="desc">Aula teórica introdutória com os conceitos fundamentais das tecnologias imersivas e as ferramentas que usaremos.</p>
+          <div class="topicos">
+            <div class="topico"><span>◆</span> O que é Realidade Aumentada</div>
+            <div class="topico"><span>◆</span> O que é Realidade Virtual</div>
+            <div class="topico"><span>◆</span> O que é Realidade Misturada</div>
+            <div class="topico"><span>◆</span> O que é A-Frame</div>
+            <div class="topico"><span>◆</span> O que é AR.js</div>
+          </div>
+        </div>
+
+        <div class="aula-card" onclick="openLesson(2)" role="button" tabindex="0" onkeydown="if(event.key==='Enter')openLesson(2)">
+          <div class="aula-card-top">
+            <div class="aula-num">02</div>
+            <div class="open-btn">Abrir aula →</div>
+          </div>
+          <h3>Prática — Seu Primeiro App AR</h3>
+          <p class="desc">Aula prática com código: construa um app de RA do zero usando A-Frame e AR.js, com modelo 3D sobre marcador.</p>
+          <div class="topicos">
+            <div class="topico"><span>◆</span> Como o AR.js funciona internamente</div>
+            <div class="topico"><span>◆</span> Estrutura do projeto e requisitos</div>
+            <div class="topico"><span>◆</span> Importando A-Frame e AR.js via CDN</div>
+            <div class="topico"><span>◆</span> Criando a cena AR com marcador</div>
+            <div class="topico"><span>◆</span> Animando o objeto 3D</div>
+            <div class="topico"><span>◆</span> Código completo e publicação no GitHub Pages</div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section>
+      <div class="tip-box">
+        <div class="icon">💡</div>
+        <div>
+          <h4>Teclas de atalho nos slides</h4>
+          <p>Use as <strong style="color:rgba(255,255,255,.8)">setas do teclado</strong> (← →) para navegar entre slides. Pressione <strong style="color:rgba(255,255,255,.8)">Esc</strong> para fechar.</p>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<footer>
+  <div class="container">
+    <p>Feito por <strong>Alcides Sandoli Neto</strong> — Ciências da Computação · UniFil · 2024</p>
+    <p style="margin-top:4px;">Realidade Aumentada na Web com A-Frame e AR.js</p>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
